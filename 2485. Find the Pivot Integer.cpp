@@ -1,5 +1,5 @@
 // 2485. Find the Pivot Integer
-// Solution:
+// Solution-1:
 // CODE:
 class Solution {
 public:
@@ -36,3 +36,22 @@ public:
 //    If `totalSum` is indeed a perfect square, the code returns the square root. This square root represents the pivot integer. Otherwise, if `totalSum` is not a perfect square, the code returns `-1`, indicating that there is no pivot integer for the given input `n`.
 
 // In summary, the code leverages the relationship between the sum of consecutive positive integers and perfect squares. By calculating the sum of positive integers up to `n` and checking if it is a perfect square, it determines whether `n` is the pivot integer.
+
+
+// Solution-
+class Solution {
+public:
+    int pivotInteger(int n) {
+        int totalSum = n*(n+1)/2;
+
+        int leftSum = 0;
+        for(int i=1; i<=n; i++){
+            leftSum += i;
+            int rightSum = totalSum - leftSum + i;
+            if(leftSum == rightSum){
+                return i;
+            }
+        }
+        return -1;
+    }
+};
